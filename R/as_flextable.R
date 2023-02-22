@@ -152,7 +152,15 @@ as_flextable.grouped_data <- function(x, col_keys = NULL, hide_grouplabel = FALS
 }
 
 
-
+make.names <- function(names,unique=T,allow_=T) {
+  names <- as.character(names)
+  names2 <- trimws(names)
+  if (unique) {
+    o <- order(names != names2)
+    names2[o] <- make.unique(names2[o])
+  }
+  names2
+}
 
 pvalue_format <- function(x){
   z <- cut(x, breaks = c(-Inf, 0.001, 0.01, 0.05, 0.1, Inf), labels = c("***", " **", "  *", "  .", "   "))
